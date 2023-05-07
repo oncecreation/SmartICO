@@ -4,19 +4,22 @@ pragma solidity ^0.8.9;
 // Uncomment this line to use console.log
 import "hardhat/console.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract MyToken is ERC20 {
-    string name = "ICO";
-    string symbol = "ICO";
-    uint totalSupply = 5_000;
-    uint public unlockTime;
-    address payable public owner;
+contract MyToken is ERC20, Ownable {
+    // uint totalSupply = 5_000;
+
+    // address payable public owner;
     event Withdrawal(uint amount, uint when);
 
-    mapping(address => uint256) public balanceOf;
+    // mapping(address => uint256) public balanceOf;
 
-    constructor() {
-        _mint(msg.sender, 1000000 * 10 ** decimals());
+    constructor(
+        uint256 _totalSupply,
+        uint256 _openTime,
+        uint256 _closeTime
+    ) ERC20("ICO", "ICO") {
+        _mint(msg.sender, _totalSupply * 10 ** decimals());
         // require(
         //     block.timestamp < _unlockTime,
         //     "Unlock time should be in the future"
