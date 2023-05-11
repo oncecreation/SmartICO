@@ -1,11 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
-import Initialco from './Component/initialco'
+import Main from "./container/Main";
+import "./App.css";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+    primary: {
+      main: "#1976d2",
+    },
+  },
+});
+
 function App() {
   return (
-    <div className="App">
-      <Initialco />
-    </div>
+    <ThemeProvider theme={darkTheme}>
+      <Main />
+    </ThemeProvider>
   );
 }
 
